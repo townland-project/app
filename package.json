@@ -1,0 +1,30 @@
+{
+  "name": "@townland-project/app",
+  "version": "0.0.1",
+  "description": "Phone app library to connect app to game, room, character, main eventer, etc.",
+  "main": "dist/index.js",
+  "scripts": {
+    "serve": "parcel public/index.html -p 8080",
+    "build": "tsc --build"
+  },
+  "keywords": [
+    "townland",
+    "application",
+    "boilerplate"
+  ],
+  "author": {
+    "name": "Townland",
+    "url": "https://townland.xyz",
+    "email": "mail@townland.xyz"
+  },
+  "homepage": "https://project.townland.xyz/repo/app",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-clean-easy": "^1.0.2",
+    "typescript": "^4.5.4"
+  },
+  "parcelCleanPaths": [
+    "dist"
+  ]
+}
