@@ -1,4 +1,4 @@
-import { ICharacter } from '../interface'
+import { ICharacter } from '@townland-project/interfaces'
 import { Event } from './event'
 
 

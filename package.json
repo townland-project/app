@@ -26,5 +26,8 @@
   },
   "parcelCleanPaths": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@townland-project/interfaces": "github:townland-project/interfaces"
+  }
 }
