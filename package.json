@@ -1,6 +1,6 @@
 {
   "name": "@townland-project/app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Phone app library to connect app to game, room, character, main eventer, etc.",
   "main": "dist/index.js",
   "scripts": {
@@ -9,8 +9,7 @@
   },
   "keywords": [
     "townland",
-    "application",
-    "boilerplate"
+    "sdk"
   ],
   "author": {
     "name": "Townland",
