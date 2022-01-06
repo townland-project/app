@@ -1,7 +1,6 @@
 import { App } from '../src';
-import { TEventApp } from '../src/interface';
 
-App.Event.once<TEventApp>('app:ready', () => {
+App.Event.once('app:ready', () => {
     console.log("READY");
 })
 

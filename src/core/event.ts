@@ -1,4 +1,6 @@
-export class CEvent {
+import { TEvent } from ".."
+
+export class CEvent<T> {
     private callback: Callback = {}
     private stack: Stack = {}
 
@@ -20,7 +22,7 @@ export class CEvent {
      * @param callback event callback
      * @returns id of callback
      */
-    public on<T>(name: T, callback: CallbackFunction): EventCallbackResult {
+    public on(name: T, callback: CallbackFunction): EventCallbackResult {
         return this._add(name, callback, false)
     }
 
@@ -30,7 +32,7 @@ export class CEvent {
      * @param callback event callback
      * @returns id of callback
      */
-    public once<T>(name: T, callback: CallbackFunction): EventCallbackResult {
+    public once(name: T, callback: CallbackFunction): EventCallbackResult {
         return this._add(name, callback, true)
     }
 
@@ -39,7 +41,7 @@ export class CEvent {
      * @param name event name
      * @param params some optinal params
      */
-    public emit<T>(name: T, ...params: any[]): void {
+    public emit(name: T, ...params: any[]): void {
         window.parent.postMessage({ id: 'townland:app', name: name, params: params })
     }
 
@@ -106,7 +108,7 @@ export class CEvent {
  * Q: Why ?
  * A: Because every part of this SDK need this class
  */
-export const Event: CEvent = new CEvent()
+export const Event: CEvent<TEvent> = new CEvent()
 
 // ============= Private Interfaces ============ //
 
