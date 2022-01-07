@@ -1,15 +1,25 @@
+import { ICharacter } from '@townland-project/interfaces'
 import { TEvent } from "./interface"
-import { CCharacter } from "./core/character"
-import { CEvent, Event } from "./core/event"
-
-import "./core/background.event"
+import { CEvent, Event, Listen } from "./core/event"
+import { CNotification } from "./core/notification"
+import { CPhone } from "./core/phone"
 
 export class CApp {
-    public Event: CEvent<TEvent> = Event
+    private _Notification: CNotification = new CNotification()
+    private _Phone: CPhone = new CPhone()
 
-    constructor() { }
+    @Listen('character')
+    public Character!: ICharacter;
 
-    get Character(): CCharacter {
-        return new CCharacter()
+    get Event(): CEvent<TEvent> {
+        return Event
+    }
+
+    get Notification(): CNotification {
+        return this._Notification
+    }
+
+    get Phone(): CPhone {
+        return this._Phone
     }
 }

@@ -8,11 +8,11 @@ export class CEvent<T> {
         this._listen()
     }
 
-    public has(name: string): boolean {
+    public Has(name: string): boolean {
         return name in this.callback
     }
 
-    public isStacked(name: string): boolean {
+    public IsStacked(name: string): boolean {
         return name in this.stack
     }
 
@@ -42,7 +42,7 @@ export class CEvent<T> {
      * @param params some optinal params
      */
     public emit(name: T, ...params: any[]): void {
-        window.parent.postMessage({ id: 'townland:app', name: name, params: params })
+        window.parent.postMessage({ id: 'townland:app', name: name, params: params }, '*')
     }
 
     private _add(name: any, callback: CallbackFunction, once: boolean): EventCallbackResult {
@@ -109,6 +109,30 @@ export class CEvent<T> {
  * A: Because every part of this SDK need this class
  */
 export const Event: CEvent<TEvent> = new CEvent()
+
+export function Listen(name: TEvent): any {
+    return <T>(target: T, key: keyof T) => {
+        let _value: T;
+
+        // get data and set value
+        Event.on(name, (value) => {
+            _value = value
+        })
+
+        // emit get event and load data
+        Event.emit(name)
+
+        return Object.assign(target, key, {
+            get: () => {
+                return _value;
+            },
+            set: (value: T) => {
+                Event.emit(`${name}:set` as any, value)
+            },
+            enumerable: false
+        })
+    }
+}
 
 // ============= Private Interfaces ============ //
 

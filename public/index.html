@@ -21,15 +21,22 @@
         iframe.src = link
 
         iframe.onload = () => {
-            iframe.contentWindow.postMessage({ name: 'app:ready', params: [] })
+            iframe.contentWindow.postMessage({ name: 'app:ready', params: [] }, '*')
         }
 
         window.addEventListener('message', (event) => {
             let { id, name, params } = event.data;
             if (id && id == "townland:app") {
                 switch (name) {
-                    case "character:get":
-                        iframe.contentWindow.postMessage({ name: 'character:get', params: [{}] })
+                    case "character":
+                        iframe.contentWindow.postMessage({ name: 'character', params: [{}] }, '*')
+                        break;
+
+                    case "notification:push":
+                        let { body } = params[0]
+                        
+                        console.log('[Notification]', body);
+
                         break;
 
                     default:
